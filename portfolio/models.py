@@ -75,6 +75,31 @@ class Competencia(models.Model):
         return self.nome
 
 
+class Formacao(models.Model):
+    nome = models.CharField(max_length=200)
+    instituicao = models.CharField(max_length=200)
+    tipo = models.CharField(max_length=100)
+    data_inicio = models.DateField()
+    data_fim = models.DateField()
+    descricao = models.TextField()
+    certificado_url = models.URLField(blank=True, null=True)
+    estado = models.CharField(max_length=100)
+    ordem_cronologica = models.IntegerField()
+    competencias = models.ManyToManyField(
+        Competencia,
+        related_name='formacoes',
+        blank=True
+    )
+    tecnologias = models.ManyToManyField(
+        Tecnologia,
+        related_name='formacoes',
+        blank=True
+    )
+
+    def __str__(self):
+        return self.nome
+
+
 class Projeto(models.Model):
     unidade_curricular = models.ForeignKey(
         UnidadeCurricular,
