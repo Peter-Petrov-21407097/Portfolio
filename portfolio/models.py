@@ -35,20 +35,6 @@ class UnidadeCurricular(models.Model):
         return self.nome
 
 
-class Docente(models.Model):
-    nome = models.CharField(max_length=200)
-    pagina_pessoal_url = models.URLField()
-    email = models.EmailField()
-    area_especializacao = models.CharField(max_length=200)
-    foto = models.ImageField(upload_to='docentes/', blank=True, null=True)
-    unidades_curriculares = models.ManyToManyField(
-        UnidadeCurricular,
-        related_name='docentes',
-        blank=True
-    )
-
-    def __str__(self):
-        return self.nome
 
 
 class Tecnologia(models.Model):
